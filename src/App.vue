@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">输入字符串生成二维码</router-link> |
+      <router-link to="/uploadModel">上传文件批量生成二维码</router-link>
     </div>
     <router-view />
   </div>
@@ -15,6 +15,11 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background: #f1f4ef;
+  width: 100%;
+  overflow: auto;
+  height: 100vh;
+  position: relative;
 }
 
 #nav {
