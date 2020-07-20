@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <img class="logo" src="./assets/logo.png" />
     <div id="nav">
       <router-link to="/">输入字符串生成二维码</router-link> |
       <router-link to="/uploadModel">上传文件批量生成二维码</router-link>
@@ -20,8 +21,13 @@
   overflow: auto;
   height: 100vh;
   position: relative;
+  font-size: 24px;
 }
-
+.logo{
+  margin-top: 64px;
+  width: 164px;
+  height: 164px;
+}
 #nav {
   padding: 30px;
 

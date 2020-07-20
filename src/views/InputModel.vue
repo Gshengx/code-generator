@@ -19,7 +19,7 @@
             colorDark="#000"
             colorLight="#fff"
           ></qrcode>
-          
+          <div class="qrcode-text">{{ item }}</div>
         </div>
       </div>
     </div>
@@ -79,35 +79,40 @@ export default {
     flex-direction: column;
     align-items: center;
     textarea {
-      width: 700px;
-      height: 260px;
+      width: 760px;
+      height: 300px;
       border: unset;
       border-radius: 8px;
-      font-size: 24px;
+      font-size: 28px;
       resize: none;
       outline: none;
+      padding: 16px;
     }
     .qrcode-list {
       display: flex;
       flex-wrap: nowrap;
       overflow: auto;
-      margin-top: 16px;
-      max-width: 820px;
+      margin-top: 24px;
+      max-width: 860px;
       background: #fff;
       border-radius: 8px;
-    }
-    .qrcode-compenent {
-      background: #fff;
-      width: 260px;
-      height: 260px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
+      .qrcode-compenent {
+        background: #fff;
+        width: 320px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 32px;
+        text-align: left;
+        flex-direction: column;
+      }
+      .qrcode-text {
+        margin: 16px 0;
+      }
     }
   }
   .btn {
-    margin: 32px 16px;
+    margin: 36px 16px;
   }
 }
 </style>

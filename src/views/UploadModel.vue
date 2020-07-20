@@ -222,7 +222,7 @@ export default {
 </script>
 <style scoped lang="less">
 .upload-model {
-  padding-bottom: 80px;
+  padding-bottom: 120px;
   .decs {
     margin: 32px;
     margin-top: 0;
@@ -232,20 +232,20 @@ export default {
     margin: auto;
     position: relative;
     .upload-icon {
-      width: 120px;
-      height: 120px;
+      width: 240px;
+      height: 240px;
       margin: auto;
       border: 1px solid rgba(0, 0, 0, 0.25);
       background: #fff;
       border-radius: 4px;
-      font-size: 50px;
+      font-size: 60px;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       color: rgba(0, 0, 0, 0.65);
       .text {
-        font-size: 16px;
+        font-size: 24px;
       }
     }
     input {
@@ -307,8 +307,9 @@ export default {
       input {
         border: unset;
         outline: none;
-        width: 40px;
-        height: 20px;
+        width: 50px;
+        height: 32px;
+        border-radius: 8px;
         text-align: center;
       }
     }
@@ -328,8 +329,8 @@ export default {
     z-index: 100;
     .close {
       text-align: right;
-      height: 60px;
-      font-size: 24px;
+      height: 80px;
+      font-size: 32px;
       color: rgba(0, 0, 0, 0.45);
     }
     .popup-content {
@@ -349,7 +350,7 @@ export default {
         overflow: auto;
         .qrcode-compenent {
           background: #fff;
-          width: 260px;
+          width: 320px;
           display: flex;
           justify-content: flex-start;
           align-items: center;

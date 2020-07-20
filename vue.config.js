@@ -1,5 +1,5 @@
 module.exports = {
-  chainWebpack: (config) => {
+  chainWebpack: config => {
     config.module
       .rule("css")
       .test(/\.css$/)
@@ -8,7 +8,7 @@ module.exports = {
       .use("px2rem")
       .loader("px2rem-loader")
       .options({
-        remUnit: 75,
+        remUnit: 75
       });
   },
   css: {
@@ -25,10 +25,10 @@ module.exports = {
             // ignoreIdentifier: false,  //（boolean/string）忽略单个属性的方法，启用ignoreidentifier后，replace将自动设置为true。
             // replace: true, // （布尔值）替换包含REM的规则，而不是添加回退。
             mediaQuery: false, //（布尔值）允许在媒体查询中转换px。
-            minPixelValue: 3, //设置要替换的最小像素值(3px会被转rem)。 默认 0
-          }),
-        ],
-      },
-    },
-  },
+            minPixelValue: 0 //设置要替换的最小像素值。 默认 0
+          })
+        ]
+      }
+    }
+  }
 };
