@@ -91,6 +91,7 @@
               colorDark="#000"
               colorLight="#fff"
             ></qrcode>
+            <div class="qrcode-text">{{ tableData[codeInd][index] }}</div>
           </div>
         </div>
         <div class="qrcode-action">
@@ -136,7 +137,6 @@ export default {
   },
   watch: {
     page(n, o) {
-      console.log(11111);
       if (n > o) {
         this.tableData = this.codeList.slice(
           o * this.pageSize,
@@ -208,7 +208,6 @@ export default {
       }
     },
     next() {
-      console.log(2222);
       if (this.codeInd < this.pageSize - 1) {
         this.codeInd += 1;
         return;
@@ -226,6 +225,7 @@ export default {
   padding-bottom: 80px;
   .decs {
     margin: 32px;
+    margin-top: 0;
   }
   .file-select {
     width: 25%;
@@ -337,16 +337,30 @@ export default {
       left: 0;
       right: 0;
       margin: auto;
-      width: 65%;
+      width: 35%;
       top: 20%;
       background: #fff;
       border-radius: 8px;
-      padding: 25px;
+      padding: 35px;
       z-index: 999;
       .qrcode-list {
         display: flex;
         flex-wrap: nowrap;
         overflow: auto;
+        .qrcode-compenent {
+          background: #fff;
+          width: 260px;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          border-radius: 8px;
+          margin: 0 24px;
+          text-align: left;
+          flex-direction: column;
+        }
+        .qrcode-text {
+          margin: 16px 0;
+        }
       }
       .qrcode-action {
         display: flex;
@@ -354,16 +368,6 @@ export default {
         width: 65%;
         margin: 16px auto;
       }
-    }
-    .qrcode-compenent {
-      background: #fff;
-      width: 260px;
-      height: 260px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 8px;
-      margin: 0 24px;
     }
   }
 }
