@@ -4,6 +4,8 @@
 2.上传.txt文件，批量获取要生成的二维码数据，数据以表格显示，二维码以弹窗展示。
     .txt文件的格式说明：以换行符划分每条数据，以空格划分需要生成的数据。
 
+项目访问地址：https://t.stringon.com
+
 ## Project setup
 ```
 yarn install
@@ -23,6 +25,3 @@ yarn build
 ```
 yarn lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

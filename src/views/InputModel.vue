@@ -5,36 +5,40 @@
     </div>
     <div class="qrcode-generator">
       <textarea row="1" v-model="value" />
-      <div class="qrcode-list">
+      <div class="btn-group">
         <div
-          class="qrcode-compenent"
-          v-for="(item, index) in showQrcode"
-          :key="index"
+          class="btn cancel"
+          @click="
+            value = '';
+            showQrcode = [];
+          "
         >
-          <qrcode
-            :id="`qrcode-${index}`"
-            :url="item"
-            :wid="230"
-            :hei="230"
-            colorDark="#000"
-            colorLight="#fff"
-          ></qrcode>
-          <div class="qrcode-text">{{ item }}</div>
+          重 置
+        </div>
+        <div
+          class="btn primary"
+          :class="{ disable: !value }"
+          @click="generator"
+        >
+          生 成
         </div>
       </div>
     </div>
-    <div class="btn-group">
+    <div class="qrcode-list">
       <div
-        class="btn cancel"
-        @click="
-          value = '';
-          showQrcode = [];
-        "
+        class="qrcode-compenent"
+        v-for="(item, index) in showQrcode"
+        :key="index"
       >
-        重 置
-      </div>
-      <div class="btn primary" :class="{ disable: !value }" @click="generator">
-        生 成
+        <qrcode
+          :id="`${item} - ${index}`"
+          :url="item"
+          :wid="230"
+          :hei="230"
+          colorDark="#000"
+          colorLight="#fff"
+        ></qrcode>
+        <div class="qrcode-text">{{ item }}</div>
       </div>
     </div>
   </div>
@@ -88,31 +92,32 @@ export default {
       outline: none;
       padding: 16px;
     }
-    .qrcode-list {
-      display: flex;
-      flex-wrap: nowrap;
-      overflow: auto;
-      margin-top: 24px;
-      max-width: 860px;
-      background: #fff;
-      border-radius: 8px;
-      .qrcode-compenent {
-        background: #fff;
-        width: 320px;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        padding: 32px;
-        text-align: left;
-        flex-direction: column;
-      }
-      .qrcode-text {
-        margin: 16px 0;
-      }
+    .btn {
+      margin: 36px 16px;
     }
   }
-  .btn {
-    margin: 36px 16px;
+  .qrcode-list {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: auto;
+    margin: auto;
+    margin-top: 24px;
+    max-width: 860px;
+    background: #fff;
+    border-radius: 8px;
+    .qrcode-compenent {
+      background: #fff;
+      width: 320px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 32px;
+      text-align: left;
+      flex-direction: column;
+    }
+    .qrcode-text {
+      margin: 16px 0;
+    }
   }
 }
 </style>

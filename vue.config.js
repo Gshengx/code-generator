@@ -1,5 +1,7 @@
+const isProd = process.env.NODE_ENV === "production";
+
 module.exports = {
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     config.module
       .rule("css")
       .test(/\.css$/)
@@ -8,8 +10,17 @@ module.exports = {
       .use("px2rem")
       .loader("px2rem-loader")
       .options({
-        remUnit: 75
+        remUnit: 75,
       });
+  },
+  configureWebpack: {
+    output: {
+      // 输出重构  打包编译后的 文件名称  【模块名称.版本号.时间戳】
+      filename: isProd ? "js/[name].[chunkhash:8].js" : "js/[name].[hash].js",
+      chunkFilename: isProd
+        ? "js/[name].[chunkhash:8].js"
+        : "js/[name].[hash].js",
+    },
   },
   css: {
     loaderOptions: {
@@ -25,10 +36,10 @@ module.exports = {
             // ignoreIdentifier: false,  //（boolean/string）忽略单个属性的方法，启用ignoreidentifier后，replace将自动设置为true。
             // replace: true, // （布尔值）替换包含REM的规则，而不是添加回退。
             mediaQuery: false, //（布尔值）允许在媒体查询中转换px。
-            minPixelValue: 0 //设置要替换的最小像素值。 默认 0
-          })
-        ]
-      }
-    }
-  }
+            minPixelValue: 0, //设置要替换的最小像素值。 默认 0
+          }),
+        ],
+      },
+    },
+  },
 };

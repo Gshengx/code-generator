@@ -32,13 +32,7 @@
                   {{ code }}
                 </div>
               </div>
-              <div
-                class="action"
-                @click="
-                  codeInd = index;
-                  showPopup = true;
-                "
-              >
+              <div class="action" @click="() => clickCode(index)">
                 生成二维码
               </div>
             </div>
@@ -68,6 +62,8 @@
     >
       <div class="popup-content">
         <div class="close">
+          <span>第{{ codeInd + 1 + pageSize * (page - 1) }}条数据</span>
+
           <span
             @click="
               showPopup = false;
@@ -84,7 +80,7 @@
             :key="index"
           >
             <qrcode
-              :id="`qrcode-${page}-${codeInd}-${index}`"
+              :id="`${item}-${index}`"
               :url="item"
               :wid="230"
               :hei="230"
@@ -154,7 +150,8 @@ export default {
       this.page = 1;
     },
     showPopup(n) {
-      if (n) {
+      if (n && this.codeList.length > 0) {
+        document.getElementById("app").scrollTop = 0;
         document.getElementById("app").style.overflow = "hidden";
       } else {
         document.getElementById("app").style.overflow = "auto";
@@ -164,7 +161,6 @@ export default {
   methods: {
     change() {
       const fileInput = document.getElementById("fileInput");
-      // const fileDiv = document.getElementById("file");
       if (fileInput.value) {
         this.hasContent = true;
         // 获取File引用:
@@ -197,25 +193,25 @@ export default {
         reader.readAsText(file, "gb2312");
       }
     },
+    clickCode(index) {
+      this.codeInd = index;
+      this.showPopup = true;
+    },
     prev() {
       if (this.codeInd > 0) {
         this.codeInd -= 1;
         return;
       }
-      if (this.page > 1) {
-        this.page -= 1;
-        this.codeInd = this.pageSize - 1;
-      }
+      this.page -= 1;
+      this.codeInd = this.pageSize - 1;
     },
     next() {
       if (this.codeInd < this.pageSize - 1) {
         this.codeInd += 1;
         return;
       }
-      if (this.page > 1) {
-        this.page += 1;
-        this.codeInd = this.pageSize - 1;
-      }
+      this.codeInd = 0;
+      this.page += 1;
     }
   }
 };
@@ -328,10 +324,11 @@ export default {
     background: rgba(0, 0, 0, 0.45);
     z-index: 100;
     .close {
-      text-align: right;
       height: 80px;
       font-size: 32px;
       color: rgba(0, 0, 0, 0.45);
+      display: flex;
+      justify-content: space-between;
     }
     .popup-content {
       position: absolute;
