@@ -8,18 +8,18 @@ const routes = [
     path: "/",
     name: "inputModel",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/InputModel.vue")
+      import(/* webpackChunkName: "generator" */ "../views/InputModel.vue"),
   },
   {
     path: "/uploadModel",
     name: "uploadModel",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/UploadModel.vue")
-  }
+      import(/* webpackChunkName: "generator" */ "../views/UploadModel.vue"),
+  },
 ];
 
 const router = new VueRouter({
-  mode: "history",
+  mode: "hash",
   base: process.env.BASE_URL,
   routes
 });

@@ -50,11 +50,11 @@ export default {
   data() {
     return {
       value: "",
-      showQrcode: []
+      showQrcode: [],
     };
   },
   components: {
-    qrcode
+    qrcode,
   },
   methods: {
     generator() {
@@ -66,13 +66,13 @@ export default {
         }
       });
       this.showQrcode = codeList;
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped lang="less">
 .input-model {
-  margin: auto;
+  margin: 0 auto 50px auto;
   width: 90%;
   .decs {
     margin: 32px;
@@ -102,7 +102,7 @@ export default {
     overflow: auto;
     margin: auto;
     margin-top: 24px;
-    max-width: 860px;
+    max-width: 80%;
     background: #fff;
     border-radius: 8px;
     .qrcode-compenent {
@@ -117,6 +117,8 @@ export default {
     }
     .qrcode-text {
       margin: 16px 0;
+      width: 100%;
+      overflow: auto;
     }
   }
 }
