@@ -335,7 +335,7 @@ export default {
       left: 0;
       right: 0;
       margin: auto;
-      width: 35%;
+      width: 45%;
       top: 20%;
       background: #fff;
       border-radius: 8px;
