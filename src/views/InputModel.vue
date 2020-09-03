@@ -119,6 +119,7 @@ export default {
       margin: 16px 0;
       width: 100%;
       overflow: auto;
+      word-break: break-all;
     }
   }
 }

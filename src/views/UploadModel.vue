@@ -358,6 +358,7 @@ export default {
         }
         .qrcode-text {
           margin: 16px 0;
+          word-break: break-all;
         }
       }
       .qrcode-action {
