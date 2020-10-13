@@ -1,7 +1,7 @@
 <template>
   <div class="input-model">
     <div class="decs">
-      使用说明：输入想要生成二维码的字符串，点击生成，即可生成对应二维码，通过换行符可生成多个二维码哦
+      使用说明：输入想要生成二维码的字符串，点击生成，即可生成对应二维码，通过换行符/空格可生成多个二维码哦
     </div>
     <div class="qrcode-generator">
       <textarea row="1" v-model="value" />
@@ -50,24 +50,28 @@ export default {
   data() {
     return {
       value: "",
-      showQrcode: [],
+      showQrcode: []
     };
   },
   components: {
-    qrcode,
+    qrcode
   },
   methods: {
     generator() {
       if (!this.value) return;
-      const codeList = this.value.split(/[(\r\n)\r\n]+/);
+      let codeList = this.value.split(/[(\r\n)\r\n]+/);
       codeList.forEach((item, index) => {
         if (!item) {
           codeList.splice(index, 1); //删除空项
         }
       });
-      this.showQrcode = codeList;
-    },
-  },
+      codeList = codeList.map(item => {
+        const code = item.replace(/\s+/g, " "); //多个空格转一个空格
+        return code.split(" ");
+      });
+      this.showQrcode = codeList.flat();
+    }
+  }
 };
 </script>
 <style scoped lang="less">

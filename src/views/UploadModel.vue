@@ -40,12 +40,20 @@
         </tbody>
       </table>
       <div class="page-action">
-        <div v-if="page > 1" @click="page -= 1">上一页</div>
+        <div v-if="page > 1" @click="page -= 1" class="prevpage">上一页</div>
         <div
           v-if="page < Math.ceil(codeList.length / pageSize)"
           @click="page += 1"
+          class="nextpage"
         >
           下一页
+        </div>
+        <div>
+          当前页码：{{ page }}/{{ Math.ceil(codeList.length / pageSize) }}
+        </div>
+        <div>
+          <input v-model="jumpPage" type="number" />
+          <span class="jump" @click="jump">跳转</span>
         </div>
         <div>
           <span>每页展示数量：</span><input v-model="pageSize" type="number" />
@@ -125,7 +133,8 @@ export default {
       codeInd: -1,
       page: 1,
       pageSize: 10,
-      showPopup: false
+      showPopup: false,
+      jumpPage: null
     };
   },
   components: {
@@ -135,7 +144,7 @@ export default {
     page(n, o) {
       if (n > o) {
         this.tableData = this.codeList.slice(
-          o * this.pageSize,
+          (n - 1) * this.pageSize,
           n * this.pageSize
         );
       } else {
@@ -196,6 +205,14 @@ export default {
     clickCode(index) {
       this.codeInd = index;
       this.showPopup = true;
+    },
+    jump() {
+      if (
+        this.jumpPage > 0 &&
+        this.jumpPage <= Math.ceil(this.codeList.length / this.pageSize)
+      ) {
+        this.page = this.jumpPage;
+      }
     },
     prev() {
       if (this.codeInd > 0) {
@@ -300,13 +317,31 @@ export default {
       margin: auto;
       margin-top: 16px;
       width: 50%;
+      align-items: center;
       input {
         border: unset;
         outline: none;
-        width: 50px;
-        height: 32px;
+        width: 56px;
+        height: 36px;
         border-radius: 8px;
         text-align: center;
+      }
+      .jump {
+        font-size: 16px;
+        background: #42b983;
+        color: #fff;
+      }
+      .prevpage,
+      .nextpage,
+      .jump {
+        border: 1px solid #42b983;
+        padding: 6px;
+        border-radius: 8px;
+      }
+      .prevpage:hover,
+      .nextpage:hover {
+        background: #42b983;
+        color: #fff;
       }
     }
     .upload-btn {
@@ -364,8 +399,18 @@ export default {
       .qrcode-action {
         display: flex;
         justify-content: space-around;
-        width: 65%;
+        width: 75%;
         margin: 16px auto;
+        > div {
+          border: 1px solid #42b983;
+          padding: 8px;
+          border-radius: 8px;
+        }
+        > div:first-child:hover,
+        > div:last-child:hover {
+          background: #42b983;
+          color: #fff;
+        }
       }
     }
   }
